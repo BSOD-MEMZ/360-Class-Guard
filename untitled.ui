@@ -29,10 +29,10 @@
     <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(68, 244, 160, 255), stop:1 rgba(86,178,172, 255));</string>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Shape::StyledPanel</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Shadow::Raised</enum>
    </property>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
@@ -255,10 +255,10 @@ border-width: 1px 0px 0px 0px;
 </string>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Shape::StyledPanel</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Shadow::Raised</enum>
    </property>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
@@ -298,7 +298,7 @@ border: none;</string>
     <bool>false</bool>
    </property>
    <property name="alignment">
-    <set>Qt::AlignCenter</set>
+    <set>Qt::AlignmentFlag::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
@@ -311,16 +311,16 @@ border: none;</string>
     </rect>
    </property>
    <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;拖堂防护已开启&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="textFormat">
-    <enum>Qt::RichText</enum>
+    <enum>Qt::TextFormat::RichText</enum>
    </property>
    <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
@@ -521,10 +521,10 @@ QPushButton:pressed{
     <item>
      <widget class="QFrame" name="frame_3">
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::Shape::StyledPanel</enum>
       </property>
       <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+       <enum>QFrame::Shadow::Raised</enum>
       </property>
       <widget class="QCheckBox" name="checkBox_9">
        <property name="geometry">
@@ -667,10 +667,10 @@ QLineEdit:hover{
     </rect>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Shape::StyledPanel</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Shadow::Raised</enum>
    </property>
    <widget class="QLineEdit" name="lineEdit_2">
     <property name="geometry">
@@ -728,10 +728,10 @@ QLineEdit:hover{
     </rect>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Shape::StyledPanel</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Shadow::Raised</enum>
    </property>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
@@ -775,7 +775,7 @@ QLineEdit:hover{
      <bool>true</bool>
     </property>
     <property name="echoMode">
-     <enum>QLineEdit::Normal</enum>
+     <enum>QLineEdit::EchoMode::Normal</enum>
     </property>
     <property name="dragEnabled">
      <bool>true</bool>
@@ -1070,10 +1070,10 @@ border: 1px solid #DDDDDD;
 border-radius: 5px;</string>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Shape::StyledPanel</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Shadow::Raised</enum>
    </property>
    <widget class="QCheckBox" name="checkBox">
     <property name="geometry">
@@ -1122,7 +1122,7 @@ QCheckBox::indicator:checked {
 border: none;</string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::HLine</enum>
+     <enum>QFrame::Shape::HLine</enum>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#ff0000;&quot;&gt;危险！除非您明确下方各个选项的用途和后果，否则不要修改任意内容！&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1302,10 +1302,10 @@ border: 1px solid #DDDDDD;
 border-radius: 5px;</string>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Shape::StyledPanel</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Shadow::Raised</enum>
    </property>
    <widget class="QLabel" name="label_21">
     <property name="geometry">
@@ -1374,7 +1374,7 @@ border: none;</string>
 border: none;</string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::HLine</enum>
+     <enum>QFrame::Shape::HLine</enum>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;输入24小时制下课时间，默认00:00:00留空（应该没有学校这个点下课吧）&lt;/p&gt;&lt;p&gt;提示：可以按Tab切换焦点&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1392,7 +1392,7 @@ border: none;</string>
       <x>20</x>
       <y>100</y>
       <width>81</width>
-      <height>151</height>
+      <height>158</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -1415,7 +1415,7 @@ QtimeEdit:hover{
         <bool>true</bool>
        </property>
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
        <property name="showGroupSeparator" stdset="0">
         <bool>false</bool>
@@ -1447,7 +1447,7 @@ QtimeEdit:hover{
         <bool>true</bool>
        </property>
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
        <property name="showGroupSeparator" stdset="0">
         <bool>false</bool>
@@ -1479,7 +1479,7 @@ QtimeEdit:hover{
         <bool>true</bool>
        </property>
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
        <property name="showGroupSeparator" stdset="0">
         <bool>false</bool>
@@ -1511,7 +1511,7 @@ QtimeEdit:hover{
         <bool>true</bool>
        </property>
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
        <property name="showGroupSeparator" stdset="0">
         <bool>false</bool>
@@ -1543,7 +1543,7 @@ QtimeEdit:hover{
         <bool>true</bool>
        </property>
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
        <property name="showGroupSeparator" stdset="0">
         <bool>false</bool>
@@ -1575,7 +1575,7 @@ QtimeEdit:hover{
         <bool>true</bool>
        </property>
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
        <property name="showGroupSeparator" stdset="0">
         <bool>false</bool>
@@ -1596,7 +1596,7 @@ QtimeEdit:hover{
       <x>120</x>
       <y>100</y>
       <width>81</width>
-      <height>151</height>
+      <height>158</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -1619,7 +1619,7 @@ QtimeEdit:hover{
         <bool>true</bool>
        </property>
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
        <property name="showGroupSeparator" stdset="0">
         <bool>false</bool>
@@ -1651,7 +1651,7 @@ QtimeEdit:hover{
         <bool>true</bool>
        </property>
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
        <property name="showGroupSeparator" stdset="0">
         <bool>false</bool>
@@ -1683,7 +1683,7 @@ QtimeEdit:hover{
         <bool>true</bool>
        </property>
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
        <property name="showGroupSeparator" stdset="0">
         <bool>false</bool>
@@ -1715,7 +1715,7 @@ QtimeEdit:hover{
         <bool>true</bool>
        </property>
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
        <property name="showGroupSeparator" stdset="0">
         <bool>false</bool>
@@ -1747,7 +1747,7 @@ QtimeEdit:hover{
         <bool>true</bool>
        </property>
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
        <property name="showGroupSeparator" stdset="0">
         <bool>false</bool>
@@ -1779,7 +1779,7 @@ QtimeEdit:hover{
         <bool>true</bool>
        </property>
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
        <property name="showGroupSeparator" stdset="0">
         <bool>false</bool>
@@ -1798,10 +1798,10 @@ QtimeEdit:hover{
   <widget class="QFrame" name="toast">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>50</y>
-     <width>160</width>
-     <height>40</height>
+     <x>230</x>
+     <y>49</y>
+     <width>211</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -1810,16 +1810,16 @@ color: #FFFFFF;
 border-radius: 20px;</string>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Shape::StyledPanel</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Shadow::Raised</enum>
    </property>
    <widget class="QLabel" name="label_22">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>8</y>
+      <y>10</y>
       <width>24</width>
       <height>24</height>
      </rect>
@@ -1840,9 +1840,9 @@ border-radius: 20px;</string>
    <widget class="QLabel" name="label_23">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>50</x>
       <y>10</y>
-      <width>81</width>
+      <width>151</width>
       <height>21</height>
      </rect>
     </property>
@@ -1850,7 +1850,7 @@ border-radius: 20px;</string>
      <string notr="true">background: none;</string>
     </property>
     <property name="text">
-     <string>设置保存成功</string>
+     <string>设置保存成功，重启后生效</string>
     </property>
    </widget>
   </widget>

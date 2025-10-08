@@ -1,30 +1,28 @@
 import json
+import multiprocessing
 import sys
 import time
 from datetime import datetime, timedelta
-from os import system
 
-from PyQt6.QtCore import QTimer
-from PyQt6.QtGui import QAction, QIcon
-from PyQt6.QtWidgets import QApplication, QMenu, QMessageBox, QSystemTrayIcon
+from PySide6.QtCore import QTimer
+from PySide6.QtGui import QAction, QIcon
+from PySide6.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QMenu,
+    QMessageBox,
+    QSystemTrayIcon,
+)
+
+from main import main as show_overlay
+from setting_ui import SettingUI
 
 
 class UltraLightLauncher:
-    def __init__(self):
-        self.times = []
+    def __init__(self, times):
+        self.times = times
         self.next_ring_time = None
-        self.load_config()
         self.calculate_next_ring()
-
-    def load_config(self):
-        with open("setting.json", "r", encoding="utf-8") as f:
-            data = json.load(f)
-        self.times = data.get("Time", [])
-        if data["CI"]:
-            QMessageBox.critical(
-                None, "程序即将关闭", "已启用时间表自动托管，请勿再运行此程序！"
-            )
-            sys.exit(0)
 
     def calculate_next_ring(self):
         if not self.times:
@@ -94,24 +92,21 @@ class UltraLightLauncher:
 
         return False
 
-    def launch_main_program(self):
-        system("start main.exe")
-        self.calculate_next_ring()
-
     def monitor_loop(self):
         while True:
             if self.should_launch():
-                self.launch_main_program()
+                multiprocessing.Process(target=show_overlay, daemon=True).start()
+                self.calculate_next_ring()
                 time.sleep(1)
             time.sleep(0.1)
 
 
 class SystemTrayApp:
-    def __init__(self):
+    def __init__(self, times):
         self.app = QApplication([])
         self.app.setQuitOnLastWindowClosed(False)
 
-        self.launcher = UltraLightLauncher()
+        self.launcher = UltraLightLauncher(times)
 
         self.tray_icon = QSystemTrayIcon()
         self.setup_tray_icon()
@@ -119,6 +114,11 @@ class SystemTrayApp:
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_tooltip)
         self.timer.start(100)
+
+        self.setting_window = QMainWindow()
+        self.setting_window.setFixedSize(690, 427)
+        self.setting_ui = SettingUI(self.setting_window)
+        self.setting_window.setWindowIcon(QIcon("assets/tray_icon.ico"))
 
         import threading
 
@@ -143,6 +143,10 @@ class SystemTrayApp:
         tray_menu.addAction(times_action)
 
         tray_menu.addSeparator()
+
+        quit_action = QAction("设置", self.app)
+        quit_action.triggered.connect(self.show_settings)
+        tray_menu.addAction(quit_action)
 
         quit_action = QAction("退出", self.app)
         quit_action.triggered.connect(self.quit_application)
@@ -180,6 +184,9 @@ class SystemTrayApp:
         times_list = "\n".join([f"• {time}" for time in self.launcher.times])
         QMessageBox.information(None, "打铃时间表", f"监控时间:\n{times_list}")
 
+    def show_settings(self):
+        self.setting_window.show()
+
     def quit_application(self):
         self.tray_icon.hide()
         self.app.quit()
@@ -188,6 +195,81 @@ class SystemTrayApp:
         sys.exit(self.app.exec())
 
 
-if __name__ == "__main__":
-    tray_app = SystemTrayApp()
+# 嗯造屎山这块。抽象？哪里有抽象
+# TODO: 优化CI集成的触发方式
+class SystemTrayAppCI:
+    def __init__(self):
+        self.app = QApplication([])
+        self.app.setQuitOnLastWindowClosed(False)
+
+        self.app.setWindowIcon(QIcon("assets/tray_icon.ico"))
+        self.tray_icon = QSystemTrayIcon()
+        self.setup_tray_icon()
+
+        self.setting_window = QMainWindow()
+        self.setting_window.setFixedSize(690, 427)
+        self.setting_ui = SettingUI(self.setting_window)
+        self.setting_window.setWindowIcon(QIcon("assets/tray_icon.ico"))
+
+    def setup_tray_icon(self):
+        self.tray_icon.setIcon(QIcon(str("assets/tray_icon.ico")))
+
+        self.update_tooltip()
+
+        tray_menu = QMenu()
+
+        status_action = QAction("状态信息", self.app)
+        # status_action.triggered.connect(self.show_status)
+        tray_menu.addAction(status_action)
+        status_action.setEnabled(False)
+
+        times_action = QAction("时间表", self.app)
+        # times_action.triggered.connect(self.show_times)
+        tray_menu.addAction(times_action)
+        times_action.setEnabled(False)
+
+        hint_action = QAction("时间表已由 CI 接管", self.app)
+        tray_menu.addAction(hint_action)
+
+        tray_menu.addSeparator()
+
+        quit_action = QAction("设置", self.app)
+        quit_action.triggered.connect(self.show_settings)
+        tray_menu.addAction(quit_action)
+
+        quit_action = QAction("退出", self.app)
+        quit_action.triggered.connect(self.quit_application)
+        tray_menu.addAction(quit_action)
+
+        self.tray_icon.setContextMenu(tray_menu)
+        self.tray_icon.show()
+
+    def update_tooltip(self):
+        tooltip = "360拖堂卫士 - 时间表已由 CI 接管"
+        self.tray_icon.setToolTip(tooltip)
+
+    def show_settings(self):
+        self.setting_window.show()
+
+    def quit_application(self):
+        self.tray_icon.hide()
+        self.app.quit()
+
+    def run(self):
+        sys.exit(self.app.exec())
+
+
+def main():
+    with open("setting.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+    if data["CI"]:
+        tray_app = SystemTrayAppCI()
+    else:
+        times = data.get("Time", [])
+        tray_app = SystemTrayApp(times)
+
     tray_app.run()
+
+
+if __name__ == "__main__":
+    main()
